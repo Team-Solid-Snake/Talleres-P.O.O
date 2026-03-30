@@ -42,6 +42,7 @@ public class ejercicio {
 				System.out.println("Usuario: ");
 				usuario= s.next();
 				
+				
 			}
 			
 		}
