@@ -37,10 +37,13 @@ public class ejercicio {
 	
 		public static void menuUsuario(int n) {
 			String usuario;
+			String contraseña;
 			Scanner s = new Scanner(System.in);
 			if (n==1){
-				System.out.println("Usuario: ");
+				System.out.print("Usuario: ");
 				usuario= s.next();
+				System.out.print("Contraseña: ");
+				contraseña = s.next();
 				
 				
 			}
