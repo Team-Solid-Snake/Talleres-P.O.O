@@ -79,64 +79,15 @@ public class ejercicio {
 
 		public static void menuUsuario(int n) {
 			String usuario;
+			String contraseña;
 			Scanner s = new Scanner(System.in);
 			if (n==1){
-				System.out.print("Usuario: ");
-				usuario= s.nextLine();
-				System.out.println(usuario);	
-		}
-		}
-		
-
-		public static boolean lecturaUsuarios(boolean cargado) throws IOException {
-			
-			File file = new File("Usuarios.txt");
-			Scanner s = new Scanner(file);
-			int i = 0;
-			while (s.hasNextLine()) {
-				String line = s.nextLine();
-				String[] partes= line.split(";");
-				
-				String usuario= partes[0];
-				String contraseña = partes[1];
-				
-				contraseñas[i]=contraseña;
-				usuarios[i]=usuario;
-				
-				i++;
-				}
-				cantidadUsuarios=i;
-			
+				System.out.println("Usuario: ");
+				usuario= s.next();
 				
 				
-			
-			return true;
-		}
-
-		public static void menuInternoUsuario(Scanner s, int indiceUsuario) throws IOException {
-		    int opcionInterna = 0;
-		    
-		    String nombreActual = usuarios[indiceUsuario]; 
-
-		    do {
-		        System.out.println("\nBienvenido " + nombreActual + "!");
-		        System.out.println("1) Registrar actividad");
-		        System.out.println("2) Modificar actividad");
-		        System.out.println("3) Eliminar actividad");
-		        System.out.println("4) Cambiar contraseña");
-		        System.out.println("5) Salir");
-		        System.out.print("> ");
-
-		        try {
-		            opcionInterna = Integer.parseInt(s.nextLine());
-		        } catch (Exception e) {
-		            System.out.println("Error: Ingrese un número válido.");
-		            opcionInterna = 0;
-		        }
-		    } while (opcionInterna != 5);
-		}
+			}
 			
 		}
-	
-
+	}
 
