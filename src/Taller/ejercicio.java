@@ -47,10 +47,9 @@ public class ejercicio {
 		// TODO Auto-generated method stub
 			switch(opcion) {
 			case 1: {
-				cargado = lecturaUsuarios(cargado);
-				if (cargado) {
+
 					iniciarSesion(s);
-				}
+				
 				
 			}
 			
