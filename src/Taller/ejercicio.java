@@ -31,7 +31,7 @@ public class ejercicio {
 
             try {
                 opcion = Integer.parseInt(entrada);
-                menuUsuario(opcion);
+
 
             } catch (Exception e) {
                 System.out.println("Por favor ingrese solamente números.");
@@ -77,17 +77,15 @@ public class ejercicio {
 		    if (!encontrado) System.out.println("Credenciales incorrectas.");
 		}
 
-		public static void menuUsuario(int n) {
-			String usuario;
-			String contraseña;
-			Scanner s = new Scanner(System.in);
-			if (n==1){
-				System.out.println("Usuario: ");
-				usuario= s.next();
-				
-				
-			}
+		private static void menuInternoUsuario(Scanner s, int i) {
+			// TODO Auto-generated method stub
 			
 		}
-	}
+
+
+				
+			
+			
+		}
+	
 
