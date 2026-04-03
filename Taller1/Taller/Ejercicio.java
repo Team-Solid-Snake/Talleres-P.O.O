@@ -319,48 +319,59 @@ public class Ejercicio
 			System.out.println();
 		}
 
-
-		private static void verTodasLasActividades() {
+		private static void verTodasLasActividades() 
+		{
 			// TODO Auto-generated method stub
 			System.out.println("\n--- LISTA DE TODAS LAS ACTIVIDADES ---");
-			if (cantRegistros == 0) {
+			if (cantRegistros == 0) 
+			{
 				System.out.println("No hay actividades registradas aún.");
 				return;
+				
 			}
 			
-			for (int i = 0; i < cantRegistros; i++) {
+			for (int i = 0; i < cantRegistros; i++) 
+			{
 				System.out.println((i+1) + ") Usuario: " + regUsuarios[i] + " | Actividad: " + regActividades[i] + " | Duración: " + regHoras[i] + " hrs | Fecha: " + regFechas[i]);
+				
 			}
 			System.out.println();
+			
 		}
 		
-
-
-		private static void actividadMasRealizada() {
+		private static void actividadMasRealizada() 
+		{
 			String actividadMax="";
 			int maxConteo = 0;
 			int maxHoras=0;
-			for (int i = 0; i < cantRegistros; i++) {
+			for (int i = 0; i < cantRegistros; i++) 
+			{
 				String actividadN= regActividades[i];
 				int contador= 0;
 				int cantHoras=0;
-				for (int j = 0; j < cantRegistros; j++) {
-					if (regActividades[j].equalsIgnoreCase(actividadN)){
+				for (int j = 0; j < cantRegistros; j++) 
+				{
+					if (regActividades[j].equalsIgnoreCase(actividadN))
+					{
 						contador++;
 						cantHoras= cantHoras+ regHoras[j];
+						
 					}
 				}
-				if (contador > maxConteo) {
+				if (contador > maxConteo) 
+				{
 					maxConteo= contador;
 					actividadMax=actividadN;
 					maxHoras=cantHoras;
+					
 				}
 			}
-			System.out.println("La actividad mas realizada es "+ actividadMax + " Con "+ maxHoras +" horas registradas" );
+			System.out.println("La actividad más realizada es " + actividadMax + " con "+ maxHoras + " horas registradas");
+			
 		}
 
-
-		private static void menuInternoUsuario(Scanner s, int i, String usuIngresado) {
+		private static void menuInternoUsuario(Scanner s, int i, String usuIngresado) 
+		{
 			// TODO Auto-generated method stub
 			System.out.println("Que deseas realizar?");
 			System.out.println();
@@ -370,71 +381,139 @@ public class Ejercicio
 			System.out.println("4) Cambiar contraseña.");
 			System.out.println("5) Salir.");
 			
-			System.out.println(">");
-			try {
-			int opcion= Integer.parseInt(s.nextLine());
+			try 
+			{
+				int opcion= Integer.parseInt(s.nextLine());
 			
-			while (opcion > 5 || opcion < 1) {
-				System.out.println("Ingresaste valores fuera de rango");
-				opcion= Integer.parseInt(s.nextLine());
-			}
-			if (opcion == 1){
-				registrarActividad(s, usuIngresado);
+				while (opcion > 5 || opcion < 1)
+				{
+					System.out.println("Ingresaste valores fuera de rango");
+					opcion= Integer.parseInt(s.nextLine());
+				}
+				if (opcion == 1)
+				{
+					registrarActividad(s, usuIngresado);
 				
-			} else if (opcion ==2) {
-				modificarActividad(s,usuIngresado);
-			}else if (opcion ==3){
-				eliminarActividad(s, usuIngresado);
+				} else if (opcion ==2) 
+				{
+					modificarActividad(s,usuIngresado);
 				
-			} else if (opcion ==4) {
-				cambiarContraseña(s, usuIngresado,i);
+				} else if (opcion ==3)
+				{
+					eliminarActividad(s, usuIngresado);
 				
-			}
-			} catch (Exception e) {
+				} else if (opcion ==4) 
+				{
+					cambiarContraseña(s, usuIngresado,i);
+				
+				}
+			} catch (Exception e) 
+			{
 				System.out.println("Error al ingresar");
+				
 			}
-			
-			
 		}
 
-
-		private static void modificarActividad(Scanner s, String usuIngresado) {
+		private static void modificarActividad(Scanner s, String usuIngresado) 
+		{
 			// TODO Auto-generated method stub
 			System.out.println();
 			System.out.println("Cual actividad desea modificar?");
 			System.out.println();
-			System.out.println("0) Regresar.");
 			for (int j = 0; j < cantRegistros; j++) {
 		        if (regUsuarios[j].equalsIgnoreCase(usuIngresado)) {
 		            System.out.println(j + ") " + regActividades[j] + " [" + regFechas[j] + " - " + regHoras[j] + "hrs]");
 		        }
 		    }
+			System.out.println("0) Regresar.");
 			 
 			int indice= Integer.parseInt(s.nextLine());
-			if (indice >=0 && indice < cantRegistros && regUsuarios[indice].equalsIgnoreCase(usuIngresado)) {
+			if (indice == 0) 
+			{
+				return;
+				
+			}
+			
+			if (indice > 0 && indice < cantRegistros && regUsuarios[indice].equalsIgnoreCase(usuIngresado)) 
+			{
 				System.out.println("Que deseas modificar?");
 				System.out.println();
-				System.out.println("0) regresar.");
+				System.out.println("0) Regresar.");
 				System.out.println("1) Fecha");
 				System.out.println("2) Duracion.");
 				System.out.println("3) Tipo de actividad");
 				int indCambio= Integer.parseInt(s.nextLine());
 				
-				if (indCambio ==1) {
-					System.out.println("Nueva fecha: ");
-					regFechas[indice]=s.nextLine();
-				} else if (indCambio ==2) {
-					System.out.println("Nueva duracion: ");
+				if (indCambio == 1) 
+				{
+					System.out.println("Día (DD): ");
+					String dia = s.nextLine();
+					try {
+						while (Integer.valueOf(dia) < 1 || Integer.valueOf(dia) > 31) 
+						{
+							System.out.println("Error, ingrese un día válido.");
+							dia = s.nextLine();
+						}
+						
+					} catch(Exception e){
+						System.out.println("Error, ingrese solamente números del 01 al 31.");
+						dia = s.nextLine();
+					
+					}
+					
+					System.out.println("Mes (MM): ");
+					String mes = s.nextLine();
+					try {
+						while (Integer.valueOf(mes) < 1 || Integer.valueOf(mes) > 12) 
+						{
+							System.out.println("Error, ingrese un mes válido.");
+							mes = s.nextLine();
+						}
+						
+					} catch(Exception e){
+						System.out.println("Error, ingrese solamente números del 01 al 12.");
+						mes = s.nextLine();
+					
+					}
+					
+					System.out.println("Año (AAAA): ");
+					String año = s.nextLine();
+					try {
+						while (Integer.valueOf(año) <= 0 || Integer.valueOf(año) > 2026) 
+						{
+							System.out.println("Error, ingrese un año válido.");
+							año = s.nextLine();
+						}
+						
+					} catch(Exception e){
+						System.out.println("Error, ingrese un año válido.");
+						año = s.nextLine();
+					
+					}
+					
+					regFechas[indice] = (dia + "/" + mes + "/" + año);
+				} else if (indCambio == 2) 
+				{
+					System.out.println("Nueva duración: ");
 					regHoras[indice]=Integer.parseInt(s.nextLine());
-				} else if (indCambio ==3) {
+					
+				} else if (indCambio == 3) 
+				{
 					System.out.println("Nueva Actividad: ");
 					regActividades[indice]=s.nextLine();
+					
+				} else if (indCambio == 0) 
+				{
+					return;
+					
 				}
 				guardarRegistros();
-				System.out.println("Cambios echos con exito!");
+				System.out.println("Cambios realizados con exito!");
 				
-			} else {
-				System.out.println("Indice no valido");
+			} else 
+			{
+				System.out.println("El índice ingresado no es válido.");
+				
 			}
 			
 		}
@@ -458,7 +537,7 @@ public class Ejercicio
 			        }
 			        writer.close();
 			    } catch (IOException e) {
-			        System.out.println("Error al guardar Usuarios.txt");
+			        System.out.println("Error al guardar el archivo Usuarios.txt");
 			    }
 		}
 
@@ -499,7 +578,7 @@ public class Ejercicio
 		            guardarRegistros(); 
 		            System.out.println("Actividad eliminada con éxito.");
 		        } else {
-		            System.out.println("Índice no válido.");
+		            System.out.println("El índice ingresado no es válido.");
 		        }
 		    } catch (Exception e) {
 		        System.out.println("Error al ingresar el índice.");
