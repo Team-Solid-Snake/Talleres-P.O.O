@@ -6,7 +6,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 
-public class Ejercicio {
+public class Ejercicio 
+{
 	
 	static String[] contraseñas= new String[50];
 	static String[] usuarios= new String[50];
@@ -20,7 +21,8 @@ public class Ejercicio {
 	
 	
 
-	public static void main(String[] args) throws IOException {
+	public static void main(String[] args) throws IOException 
+	{
 		// TODO Auto-generated method stub
         Scanner s = new Scanner(System.in);
         boolean cargado = false; 
@@ -31,7 +33,7 @@ public class Ejercicio {
         System.out.println("");
         do {
             System.out.println();
-            System.out.println("1) Menu de usuario");
+            System.out.println("1) Menu de Usuarios");
             System.out.println("2) Menu de Analisis");
      
             System.out.println("3) Salir");
@@ -42,27 +44,36 @@ public class Ejercicio {
 
             try {
                 opcion = Integer.parseInt(entrada);
+                if (opcion < 1 || opcion > 3) {
+                	System.out.println("Error, ingrese una opción válida.");
+                }
 
 
             } catch (Exception e) {
-                System.out.println("Por favor ingrese solamente números.");
+                System.out.println("Error, ingrese solamente números.");
                 opcion = 0;
             }
            
-            cargado= opciones(s, opcion, cargado);
+            cargado = opciones(s, opcion, cargado);
             
-        }while (opcion !=3);
-        	System.out.print("Adios!");
+        } while (opcion != 3);
+        	if (opcion == 3) 
+        	{
+        		System.out.print("Adios!");
+             		
+        	}
         }
 	
 
-		private static void cargarRegistros() {
+		private static void cargarRegistros() 
+		{
 		// TODO Auto-generated method stub
 			cantRegistros=0;
 			try {
 				File file= new File("Registros.txt");
 				Scanner s= new Scanner(file);
-				while (s.hasNextLine() && cantRegistros < 300) {
+				while (s.hasNextLine() && cantRegistros <= 300) 
+				{
 					
 	                String linea = s.nextLine();
                     String[] partes = linea.split(";");
@@ -74,9 +85,11 @@ public class Ejercicio {
                     
                     cantRegistros++;
                 
-	                }
-			} catch (Exception e) {
+					}
+			} catch (Exception e) 
+			{
 				System.out.println("Error al cargar los registros");
+				
 			}
 		
 	}
