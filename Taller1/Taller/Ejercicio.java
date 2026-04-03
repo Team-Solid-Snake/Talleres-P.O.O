@@ -198,15 +198,15 @@ public class Ejercicio
 		
 		private static void menuDos(Scanner s) {
 			// TODO Auto-generated method stub
-			System.out.println("Bienvenido al menu de analisis!");
+			System.out.println("Bienvenido al menú de análisis!");
 			System.out.println();
 			System.out.println("Que desea realizar?");
 			System.out.println();
-			System.out.println("1) Actividad más realizada");
-			System.out.println("2) Actividad más realizada por cada usuario");
-			System.out.println("3) Usuario con mayor procastinación");
-			System.out.println("4) Ver todas las actividades");
-			System.out.println("5) Salir");
+			System.out.println("1) Actividad más realizada.");
+			System.out.println("2) Actividad más realizada por cada usuario.");
+			System.out.println("3) Usuario con mayor procastinación.");
+			System.out.println("4) Ver todas las actividades.");
+			System.out.println("5) Regresar.");
 						
 			try 
 			{
@@ -379,7 +379,7 @@ public class Ejercicio
 			System.out.println("2) Modificar actividad.");
 			System.out.println("3) Eliminar actividad.");
 			System.out.println("4) Cambiar contraseña.");
-			System.out.println("5) Salir.");
+			System.out.println("5) Regresar.");
 			
 			try 
 			{
@@ -387,7 +387,7 @@ public class Ejercicio
 			
 				while (opcion > 5 || opcion < 1)
 				{
-					System.out.println("Ingresaste valores fuera de rango");
+					System.out.println("Error, ingrese una opción válida.");
 					opcion= Integer.parseInt(s.nextLine());
 				}
 				if (opcion == 1)
@@ -409,7 +409,7 @@ public class Ejercicio
 				}
 			} catch (Exception e) 
 			{
-				System.out.println("Error al ingresar");
+				System.out.println("Error, ingrese solamente números.");
 				
 			}
 		}
@@ -448,14 +448,18 @@ public class Ejercicio
 				{
 					System.out.println("Día (DD): ");
 					String dia = s.nextLine();
-					try {
+					
+					try 
+					{
 						while (Integer.valueOf(dia) < 1 || Integer.valueOf(dia) > 31) 
 						{
 							System.out.println("Error, ingrese un día válido.");
 							dia = s.nextLine();
+							
 						}
 						
-					} catch(Exception e){
+					} catch(Exception e)
+					{
 						System.out.println("Error, ingrese solamente números del 01 al 31.");
 						dia = s.nextLine();
 					
@@ -463,11 +467,14 @@ public class Ejercicio
 					
 					System.out.println("Mes (MM): ");
 					String mes = s.nextLine();
-					try {
+					
+					try 
+					{
 						while (Integer.valueOf(mes) < 1 || Integer.valueOf(mes) > 12) 
 						{
 							System.out.println("Error, ingrese un mes válido.");
 							mes = s.nextLine();
+							
 						}
 						
 					} catch(Exception e){
@@ -478,14 +485,18 @@ public class Ejercicio
 					
 					System.out.println("Año (AAAA): ");
 					String año = s.nextLine();
-					try {
+					
+					try 
+					{
 						while (Integer.valueOf(año) <= 0 || Integer.valueOf(año) > 2026) 
 						{
 							System.out.println("Error, ingrese un año válido.");
 							año = s.nextLine();
+							
 						}
 						
-					} catch(Exception e){
+					} catch(Exception e)
+					{
 						System.out.println("Error, ingrese un año válido.");
 						año = s.nextLine();
 					
@@ -519,7 +530,8 @@ public class Ejercicio
 		}
 
 
-		private static void cambiarContraseña(Scanner s, String usuIngresado, int i) {
+		private static void cambiarContraseña(Scanner s, String usuIngresado, int i) 
+		{
 			System.out.println("Nueva contraseña: ");
 			String contraNueva= s.nextLine();
 			contraseñas[i]= contraNueva;
@@ -530,74 +542,147 @@ public class Ejercicio
 
 
 		private static void guardarUsuarios() {
-			    try {
+			    try 
+			    {
 			        FileWriter writer = new FileWriter("Usuarios.txt");
-			        for (int i = 0; i < cantidadUsuarios; i++) {
+			        for (int i = 0; i < cantidadUsuarios; i++) 
+			        {
 			            writer.write(usuarios[i] + ";" + contraseñas[i] + "\n");
+			            
 			        }
 			        writer.close();
-			    } catch (IOException e) {
+			    } catch (IOException e) 
+			    {
 			        System.out.println("Error al guardar el archivo Usuarios.txt");
+			        
 			    }
 		}
 
 
-		private static void eliminarActividad(Scanner s, String usuIngresado) {
+		private static void eliminarActividad(Scanner s, String usuIngresado) 
+		{
 			// TODO Auto-generated method stub
 			System.out.println("\n--- Eliminar Actividad ---");
 		    
 		    boolean tiene = false;
-		    for (int j = 0; j < cantRegistros; j++) {
+		    for (int j = 0; j < cantRegistros; j++) 
+		    {
 		        if (regUsuarios[j].equalsIgnoreCase(usuIngresado)) {
 		            System.out.println(j + ") " + regActividades[j] + " [" + regFechas[j] + "]");
 		            tiene = true;
+		            
 		        }
 		    }
 
-		    if (!tiene) {
+		    if (!tiene) 
+		    {
 		        System.out.println("No tienes actividades para eliminar.");
 		        return;
+		        
 		    }
 
 		    System.out.print("Ingresa el índice de la actividad a eliminar: ");
-		    try {
+		    try 
+		    {
 		        int indice = Integer.parseInt(s.nextLine());
 
 		       
-		        if (indice >= 0 && indice < cantRegistros && regUsuarios[indice].equalsIgnoreCase(usuIngresado)) {
-		            
-		           
-		            for (int k = indice; k < cantRegistros - 1; k++) {
+		        if (indice >= 0 && indice < cantRegistros && regUsuarios[indice].equalsIgnoreCase(usuIngresado)) 
+		        {      
+		            for (int k = indice; k < cantRegistros - 1; k++) 
+		            {
 		                regUsuarios[k] = regUsuarios[k + 1];
 		                regFechas[k] = regFechas[k + 1];
 		                regHoras[k] = regHoras[k + 1];
 		                regActividades[k] = regActividades[k + 1];
+		                
 		            }
 		            
 		            cantRegistros--;
 		            guardarRegistros(); 
 		            System.out.println("Actividad eliminada con éxito.");
-		        } else {
+		        } else 
+		        {
 		            System.out.println("El índice ingresado no es válido.");
+		            
 		        }
-		    } catch (Exception e) {
+		    } catch (Exception e) 
+		    {
 		        System.out.println("Error al ingresar el índice.");
+		        
 		    }
 		
 		}
 
 
-		private static void registrarActividad(Scanner s, String usuarios2) {
-			if (cantRegistros >= 300) {
+		private static void registrarActividad(Scanner s, String usuarios2) 
+		{
+			if (cantRegistros >= 300) 
+			{
 		        System.out.println("Límite de registros alcanzado.");
 		        return;
+		        
 		    }
 		    System.out.println("\n--- Nuevo Registro ---");
-		    System.out.print("Fecha (DD/MM/AAAA): ");
-		    String fecha = s.nextLine();
-		    System.out.print("Horas: ");
+		    System.out.println("Fecha (DD/MM/AAAA)");
+		    System.out.println("Día (DD): ");
+			String dia = s.nextLine();
+			
+			try 
+			{
+				while (Integer.valueOf(dia) < 1 || Integer.valueOf(dia) > 31) 
+				{
+					System.out.println("Error, ingrese un día válido.");
+					dia = s.nextLine();
+					
+				}
+			} catch(Exception e)
+			{
+				System.out.println("Error, ingrese solamente números del 01 al 31.");
+				dia = s.nextLine();
+			
+			}
+			
+			System.out.println("Mes (MM): ");
+			String mes = s.nextLine();
+			try 
+			{
+				while (Integer.valueOf(mes) < 1 || Integer.valueOf(mes) > 12) 
+				{
+					System.out.println("Error, ingrese un mes válido.");
+					mes = s.nextLine();
+					
+				}
+				
+			} catch(Exception e)
+			{
+				System.out.println("Error, ingrese solamente números del 01 al 12.");
+				mes = s.nextLine();
+			
+			}
+			
+			System.out.println("Año (AAAA): ");
+			String año = s.nextLine();
+			try 
+			{
+				while (Integer.valueOf(año) <= 0 || Integer.valueOf(año) > 2026) 
+				{
+					System.out.println("Error, ingrese un año válido.");
+					año = s.nextLine();
+					
+				}
+				
+			} catch(Exception e)
+			{
+				System.out.println("Error, ingrese un año válido.");
+				año = s.nextLine();
+			
+			}
+		    
+			String fecha = (dia + "/" + mes + "/" + año);	
+		    System.out.print("Horas invertidas: ");
 		    int horas = Integer.parseInt(s.nextLine());
-		    System.out.print("Actividad: ");
+		    System.out.print("Actividad realizada: ");
 		    String actividad = s.nextLine();
 
 		
@@ -609,7 +694,8 @@ public class Ejercicio
 		    cantRegistros++;
 		    guardarRegistros(); 
 		    System.out.println("¡Actividad guardada!");
+		    
 		}
-		}
+}
 	
 
