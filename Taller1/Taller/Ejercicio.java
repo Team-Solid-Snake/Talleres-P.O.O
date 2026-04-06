@@ -23,6 +23,9 @@ public class Ejercicio
 
 	public static void main(String[] args) throws IOException 
 	{
+		// Tomás Johao Sabando Jofré | 22.368.978-7 | I.T.I
+		// José Miguel Urtubia Alarcón | 22.017.611-8 | I.C.C.I
+		
 		// TODO Auto-generated method stub
         Scanner s = new Scanner(System.in);
         boolean cargado = false; 
